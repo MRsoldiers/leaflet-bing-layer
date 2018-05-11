@@ -214,7 +214,7 @@ L.TileLayer.Bing = L.TileLayer.extend({
       throw new Error('Bing Imagery Metadata error: \n' + JSON.stringify(metaData, null, '  '))
     }
     var resource = metaData.resourceSets[0].resources[0]
-    this._url = resource.imageUrl
+    this._url = resource.imageUrl.replace('en-US', 'zh-Hans')
     this._imageryProviders = resource.imageryProviders || []
     this.options.subdomains = resource.imageUrlSubdomains
     this._updateAttribution()
