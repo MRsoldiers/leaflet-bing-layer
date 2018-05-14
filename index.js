@@ -214,7 +214,10 @@ L.TileLayer.Bing = L.TileLayer.extend({
       throw new Error('Bing Imagery Metadata error: \n' + JSON.stringify(metaData, null, '  '))
     }
     var resource = metaData.resourceSets[0].resources[0]
-    this._url = resource.imageUrl.replace('en-US', 'zh-Hans')
+    let url = resource.imageUrl.replace('{subdomain}.ssl.ak.dynamic.tiles.virtualearth.net', 'dynamic.{subdomain}.tiles.ditu.live.com')
+    url = url.replace('?mkt=en-US&it=G,L&shading=hill&og=262&n=z&c4w=1', '.jpeg?it=G,VE,BX,L,LA&mkt=zh-cn,syr&n=z&og=111&ur=CN')
+    this._url = url
+    // this._url = resource.imageUrl.replace('en-US', 'zh-Hans')
     this._imageryProviders = resource.imageryProviders || []
     this.options.subdomains = resource.imageUrlSubdomains
     this._updateAttribution()
